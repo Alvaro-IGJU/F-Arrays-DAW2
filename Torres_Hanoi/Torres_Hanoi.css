@@ -1,0 +1,48 @@
+#tablero {
+  height: 500px;
+  display: flex;
+  width: fit-content;
+  margin: 2% 15% 1% 15%;
+
+}
+
+.column {
+
+  margin: 20px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.base {
+  width: 400px;
+  height: 10px;
+  background-color: #AB2A3E;
+}
+
+.piece {
+  background-color: #AB2A3E;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#numTries{
+  text-align: center;
+}
+
+#tablero button{
+  margin: 2%;
+  width: 30%;
+  
+}

@@ -1,0 +1,66 @@
+body{
+    background-color: rgb(190, 190, 190);;
+}
+
+#marco{
+    background-color: rgb(200, 200, 200);
+    border: 7px outset ;
+    border-color: white;
+    width: fit-content;
+    padding: 30px;
+    margin: auto;
+    margin-top: 10%;
+}
+#marcoPoints{
+    border: 4px inset ;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#flags, #points{
+    font-family: 'DS-Digital', sans-serif;
+    font-size: 2em;                                            
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    width: 30%;
+    margin: 2%;
+    background-color: black;
+}
+#tablero {
+    margin-top: 5%;
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 4px inset ;
+}
+
+.cell {
+    font-family: 'PF Tempesta Five', sans-serif;
+    border: 4px   outset ;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(190, 190, 190);
+}
+.mine{
+    width: 20px;
+    height:20px;
+}
+
+#face{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    border: 4px outset ;
+}
+
+#face>*{
+    height: 50px;
+    width: 50px;
+}
