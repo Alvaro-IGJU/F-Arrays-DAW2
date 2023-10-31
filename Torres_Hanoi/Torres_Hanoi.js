@@ -4,7 +4,8 @@ const colores = ["red", "blue", "green", "yellow", "orange"];
 let numDiscs;
 let numTries = 0;
 let numTriesElement = document.querySelector('#numTries');
-
+let pasos = document.querySelector('#pasos');
+let pasosCont= 0;
 document.getElementById('startButton').addEventListener('click', function () {
     numDiscs = parseInt(document.getElementById('numDiscs').value);
     if (numDiscs >= 1 && numDiscs <= 5) {
@@ -18,7 +19,7 @@ document.getElementById('startButton').addEventListener('click', function () {
 document.getElementById('resolverButton').addEventListener('click', function () {
     numDiscs = parseInt(document.getElementById('numDiscs').value);
     if (numDiscs >= 1 && numDiscs <= 5) {
-        startGame(numDiscs,true);
+        startGame(numDiscs, true);
     } else {
         alert("Por favor, reinicia el juego para resolver automáticamente.");
     }
@@ -64,7 +65,9 @@ function updateBoard() {
                     if (hanoiTowers[originColumn].length > 0 &&
                         (hanoiTowers[destinyColumn].length === 0 ||
                             hanoiTowers[originColumn][0] < hanoiTowers[destinyColumn][0])) {
+                        pasos.innerHTML += "<p>Se ha movido la pieza " + hanoiTowers[originColumn][0] + " de " + (originColumn +1) + " a " + (destinyColumn+1) + "</p>";
                         let changedNumber = hanoiTowers[originColumn].shift();
+
                         hanoiTowers[destinyColumn].unshift(changedNumber);
                         numTries++;
                         numTriesElement.innerHTML = "<b>INTENTS: </b>" + numTries;
@@ -95,7 +98,7 @@ function updateBoardAuto() {
         }
         const base = createBase();
         column.appendChild(base);
-        
+
     }
     if (hanoiTowers[2].length == numDiscs) {
         document.getElementById("respuesta").textContent = "¡FELICIDADES!¡HAS GANADO! INTENTOS TOTALES: " + numTries;
@@ -103,19 +106,25 @@ function updateBoardAuto() {
 }
 
 function resolverTorresDeHanoi(numDiscs, origen, auxiliar, destino) {
+    pasosCont++;
+    numTries++;
+    numTriesElement.innerHTML = "<b>INTENTS: </b>" + numTries;
+    pasos.innerHTML += "<p><b>Paso "+pasosCont+"</b> Se ha movido la pieza " + numDiscs + " de " + (origen) + " a " + (destino) + "</p>";
     if (numDiscs === 1) {
-        // Mover disco 1 de origen a destino
+
         hanoiTowers[destino].unshift(hanoiTowers[origen].shift());
-        
-        updateBoardAuto();
-       
+        updateBoard();
         return;
     }
-    
+   
+    // Mover n - 1 discos de origen a auxiliar usando destino como auxiliar
     resolverTorresDeHanoi(numDiscs - 1, origen, destino, auxiliar);
+    hanoiTowers[destino].unshift(hanoiTowers[origen].shift());
+    updateBoard();
+    // Mover el disco más grande de origen a destino
 
-    resolverTorresDeHanoi(1, origen, auxiliar, destino);
 
+    // Mover n - 1 discos de auxiliar a destino usando origen como auxiliar
     resolverTorresDeHanoi(numDiscs - 1, auxiliar, origen, destino);
 }
 
@@ -126,7 +135,11 @@ function resolverTorresDeHanoi(numDiscs, origen, auxiliar, destino) {
 
 
 
+
+
 function startGame(numDiscs, ia = false) {
+    pasosCont=0;
+    pasos.innerHTML = "";
     numTries = 0;
     hanoiTowers = [[], [], []];
     numTriesElement.innerHTML = "<b>INTENTS: </b>" + numTries;
@@ -137,7 +150,7 @@ function startGame(numDiscs, ia = false) {
     updateBoard();
     if (!ia) {
 
-        
+
     } else {
         resolverTorresDeHanoi(numDiscs, 0, 1, 2);
     }

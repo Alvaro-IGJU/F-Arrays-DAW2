@@ -24,7 +24,7 @@
 }
 
 .piece {
-  background-color: #AB2A3E;
+  /* background-color: #AB2A3E; */
   color: white;
   height: 40px;
   line-height: 40px;
@@ -45,4 +45,8 @@ h1 {
   margin: 2%;
   width: 30%;
   
+}
+
+#pasos{
+  text-align: center;
 }
